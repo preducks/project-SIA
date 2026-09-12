@@ -1,0 +1,14 @@
+[
+  {
+    "nome": "pedro",
+    "senha": "130724",
+    "email": null,
+    "origem": "local"
+  },
+  {
+    "nome": "vinicius",
+    "senha": "vnz00",
+    "email": null,
+    "origem": "local"
+  }
+]

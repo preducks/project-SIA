@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang='pt-br'><head>
+<meta charset='UTF-8'><title>SIA Dashboard</title>
+<meta name='viewport' content='width=device-width,initial-scale=1.0'>
+<link href='https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&family=Instrument+Sans:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css' rel='stylesheet'>
+<link rel='stylesheet' href='/style.css'>
+<link rel='stylesheet' href='/dash.css'>
+</head><body>
+<div class='sidebar'>
+  <div class='sidebar-brand'>
+    <div class='sia-logo'>SIA</div>
+    <h1>Sistema Inteligente de Irrigação</h1>
+  </div>
+  <div class='clock' id='clock'>00:00:00</div>
+  <div class='divider'></div>
+  <div class='menu'>
+    <button onclick="window.location.href='/relatorios'"><i class='fa-solid fa-chart-bar'></i> Relatórios</button>
+    <button onclick="window.location.href='/ia'"><i class='fa-solid fa-brain'></i> Assistente IA</button>
+  </div>
+  <div class='logout-area'>
+    <button class='logout-btn' onclick="window.location.href='/'"><i class='fa-solid fa-right-from-bracket'></i> Sair</button>
+  </div>
+</div>
+<div class='main'>
+  <div class='page-header'>
+    <h2>Painel de Controle</h2>
+    <div class='status-badge'><span class='status-dot'></span>Sistema Ativo</div>
+  </div>
+  <div class='top-row'>
+    <div class='vcard c-umidade'>
+      <div class='vcard-label'>Umidade do Solo</div>
+      <div class='umidade-gauge-wrap'>
+        <canvas id='umidade-canvas' width='150' height='90' style='max-width:150px'></canvas>
+        <div style='display:flex;justify-content:space-between;width:100%;max-width:150px'>
+          <span style='font-family:DM Mono,monospace;font-size:9px;color:#4e7535'>0%</span>
+          <span style='font-family:DM Mono,monospace;font-size:9px;color:#4e7535'>100%</span>
+        </div>
+      </div>
+      <div class='vcard-sub' id='umidade-status'>Aguardando...</div>
+    </div>
+    <div class='vcard c-temperatura'>
+      <div class='vcard-label'>Temperatura</div>
+      <div class='vcard-icon'><i class='fa-solid fa-temperature-half'></i></div>
+      <div class='temp-indicator'>
+        <div class='temp-circle media' id='temp-circle'><i class='fa-solid fa-temperature-half'></i></div>
+      </div>
+      <div class='vcard-value' style='font-size:20px' id='temp-val'>--</div>
+      <div class='vcard-sub' id='temp-sub'>Sensor de temperatura</div>
+    </div>
+    <div class='vcard c-uv'>
+      <div class='vcard-label'>Índice UV</div>
+      <div class='vcard-icon'><i class='fa-solid fa-sun'></i></div>
+      <div class='vcard-value' id='uv-val'>--</div>
+      <div class='uv-scale'>
+        <div class='uv-scale-bar'><div class='uv-pointer' id='uv-pointer' style='left:0%'></div></div>
+        <div class='uv-labels'><span>0</span><span>3</span><span>6</span><span>8</span><span>11+</span></div>
+      </div>
+      <div class='uv-categoria' id='uv-cat'>Aguardando...</div>
+    </div>
+    <div class='vcard c-agua'>
+      <div class='vcard-label'>Nível da Água</div>
+      <div class='vcard-icon'><i class='fa-solid fa-fill-drip'></i></div>
+      <div class='agua-tank'>
+        <div class='agua-fill' id='agua-fill' style='height:0%'></div>
+        <div class='agua-pct' id='agua-pct'>--%</div>
+      </div>
+      <div class='vcard-sub' id='agua-sub'>Reservatório</div>
+    </div>
+    <div class='vcard c-ar'>
+      <div class='vcard-label'>Umidade do Ar</div>
+      <div class='vcard-icon'><i class='fa-solid fa-wind'></i></div>
+      <div class='vcard-value' id='ar-val'>--</div>
+      <div class='vcard-sub' id='ar-sub'>Sensor de umidade do ar</div>
+    </div>
+  </div>
+  <div class='bottom-row'>
+    <div class='hcard c-bomba'>
+      <div class='hcard-icon'><i class='fa-solid fa-bolt'></i></div>
+      <div class='hcard-info'>
+        <h3>Bomba d'Água</h3>
+        <div class='bomba-status desligada' id='bomba-badge'>
+          <span class='bomba-dot'></span><span id='bomba-txt'>Desligada</span>
+        </div>
+      </div>
+    </div>
+    <div class='hcard c-regas'>
+      <div class='hcard-icon'><i class='fa-solid fa-rotate'></i></div>
+      <div class='hcard-info'><h3>Vezes Regadas</h3><p id='regas-val'>--</p></div>
+    </div>
+  </div>
+</div>
+<script src='/dash.js'></script>
+</body></html>

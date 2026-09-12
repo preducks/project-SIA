@@ -1,0 +1,12 @@
+{
+  "name": "sia-web-simulator",
+  "version": "1.0.0",
+  "description": "Simulador local do site SIA (Sistema de Irrigacao Automatizado) para testar no VS Code sem o ESP32",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
