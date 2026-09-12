@@ -1,67 +1,45 @@
-# 🌱 Sistema SIA
+# SIA — Simulador Local (VS Code)
 
-##  O que é?
-O **SIA (Sistema de Irrigação Automático)** é um sistema inteligente baseado em ESP32 que automatiza a irrigação de plantas usando sensores e conexão Wi-Fi.
+Este pacote contém o site completo (HTML/CSS/JS) mais um pequeno servidor
+Node.js que reproduz as rotas que o ESP32 forneceria (`/`, `/login`,
+`/dashboard`, `/relatorios`, `/ia`, `/dados`, etc). Assim o site roda
+inteiro no seu PC, com navegação e dados de sensores simulados.
 
----
+## Como rodar
 
-##  Funcionalidades
+1. Abra a pasta `sia_project` no VS Code.
+2. Abra o terminal integrado (Ctrl+`) e rode:
+   ```
+   npm install
+   npm start
+   ```
+3. Acesse **http://localhost:3000** no navegador.
 
--  Leitura da umidade do solo  
--  Controle automático da bomba de água  
--  Detecção de chuva  
--  Leitura do índice UV  
--  Monitoramento do nível do reservatório  
--  Dashboard web em tempo real  
+## Login
 
----
+- usuário: `pedro` — senha: `130724`
+- usuário: `vinicius` — senha: `vnz00`
 
-##  O que ele resolve?
+## Estrutura
 
-- Evita falta de água nas plantas  
-- Evita excesso de irrigação  
-- Reduz desperdício de água  
-- Elimina o esquecimento da rega  
-- Automatiza completamente o processo  
+```
+sia_project/
+├── server.js          → servidor Express (rotas + dados simulados)
+├── package.json
+├── public/             → CSS e JS (servidos como /style.css, /dash.js...)
+│   ├── style.css, login.css, home.css, dash.css, rel.css, ia.css
+│   └── dash.js, rel.js, ia.js
+└── views/               → páginas HTML
+    ├── home.html, login.html, dashboard.html
+    ├── relatorios.html, ia.html
+```
 
----
+## Observação
 
-##  Tecnologias utilizadas
-
-- ESP32  
-- Sensores de umidade, chuva, UV e nível de água  
-- Servos motores  
-- Relé  
-- Servidor Web (HTTP)  
-
----
-
-##  Interface do sistema
-
-O painel mostra em tempo real:
-
--  Umidade do solo (%)  
--  Nível de água (%)
--  Estado da bomba  
--  Índice UV  
--  Chuva (sim/não)  
--  Estado do reservatório  
--  Quantidade de regas  
-
----
-
-##  Como funciona
-
-1. Sensores coletam dados do ambiente  
-2. O ESP32 processa as informações  
-3. O sistema toma decisões automáticas:
-   - Liga/desliga a bomba  
-   - Abre/fecha o reservatório  
-4. Os dados são enviados para uma página web  
-5. O usuário acompanha tudo em tempo real  
-
----
-
-##  Resultado final
-
-O SIA transforma um processo manual de irrigação em um sistema **automático, inteligente e eficiente**, economizando água e garantindo melhor cuidado das plantas 
+Os dados do dashboard (umidade, temperatura, UV, nível de água, bomba) e do
+assistente de IA são **simulados aleatoriamente** pelo `server.js`, já
+que aqui não há um ESP32 real com sensores conectados. Quando for subir
+para o hardware de verdade, essas rotas (`/dados`, `/dados_rel`,
+`/perguntar_ia`) devem voltar a ser implementadas no firmware, lendo os
+sensores reais — o HTML/CSS/JS front-end pode continuar exatamente o
+mesmo.
